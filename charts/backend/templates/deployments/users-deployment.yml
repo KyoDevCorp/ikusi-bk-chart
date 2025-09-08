@@ -1,0 +1,66 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usuarios-service
+  namespace: ikusi
+  labels:
+    app: usuarios-service
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: usuarios-service
+  template:
+    metadata:
+      labels:
+        app: usuarios-service
+    spec:
+      containers:
+      - name: usuarios-service
+        image: {{ .Values.image.user.repository }}:{{ .Values.image.user.tag }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: app-secrets
+        - configMapRef:
+            name: app-config
+        livenessProbe:
+          httpGet:
+            path: /docs
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /docs
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+      imagePullSecrets:
+        - name: dockerhub-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: usuarios-service
+  namespace: ikusi
+  labels:
+    app: usuarios-service
+spec:
+  selector:
+    app: usuarios-service
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP

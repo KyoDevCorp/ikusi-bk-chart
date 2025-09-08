@@ -1,0 +1,67 @@
+# k8s/manifests/transacciones-service.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transacciones-service
+  namespace: ikusi
+  labels:
+    app: transacciones-service
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: transacciones-service
+  template:
+    metadata:
+      labels:
+        app: transacciones-service
+    spec:
+      containers:
+      - name: transacciones-service
+        image: {{ .Values.image.transaction.repository }}:{{ .Values.image.transaction.tag }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: app-secrets
+        - configMapRef:
+            name: app-config
+        livenessProbe:
+          httpGet:
+            path: /docs
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /docs
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+      imagePullSecrets:
+        - name: dockerhub-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: transacciones-service
+  namespace: ikusi
+  labels:
+    app: transacciones-service
+spec:
+  selector:
+    app: transacciones-service
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: ClusterIP

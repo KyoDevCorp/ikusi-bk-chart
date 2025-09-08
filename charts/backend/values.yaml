@@ -1,0 +1,9 @@
+replicaCount: 3
+
+image:
+  user:
+    repository: kyovint/kyoimgusers
+    tag: 1.0.0
+  transaction:
+    repository: kyovint/kyoimgtransactions
+    tag: 1.0.0
