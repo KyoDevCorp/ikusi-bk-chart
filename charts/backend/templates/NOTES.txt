@@ -1,1 +1,1 @@
-1. Welcome tu ikusi backend
+Welcome tu ikusi backend helm chart
