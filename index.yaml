@@ -1,0 +1,54 @@
+apiVersion: v1
+entries:
+  backend:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-09-08T13:04:33.195536555Z"
+    description: A Helm chart for Kubernetes
+    digest: 3524d839c6e2c7d0fa40dca94b3270e41054ac6cf9f662d9666d5492d300dbfe
+    name: backend
+    type: application
+    urls:
+    - https://kyodevcorp.github.io/ikusi-bk-chart/backend-1.0.3.tgz
+    version: 1.0.3
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-09-08T13:04:33.19533005Z"
+    description: A Helm chart for Kubernetes
+    digest: 11706a2e6eda1250a2324c9ee89b0b3cc2c7a50207f75635454fa9fa7589bb3a
+    name: backend
+    type: application
+    urls:
+    - https://kyodevcorp.github.io/ikusi-bk-chart/backend-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-09-08T13:04:33.195126351Z"
+    description: A Helm chart for Kubernetes
+    digest: b2a4583eafbe03c652523b991a3f27eafa8ce11ba39bd94d62b72a59f80bb805
+    name: backend
+    type: application
+    urls:
+    - https://kyodevcorp.github.io/ikusi-bk-chart/backend-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-09-08T13:04:33.194894267Z"
+    description: A Helm chart for Kubernetes
+    digest: 408a03b26aa64351d4f44b4701a595a544cc6c5601249e8386bcdcc56be5f3b8
+    name: backend
+    type: application
+    urls:
+    - https://kyodevcorp.github.io/ikusi-bk-chart/backend-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2025-09-08T13:04:33.194671812Z"
+    description: A Helm chart for Kubernetes
+    digest: 0e97a1cedee8cb37fed6db28150815e38f777bad4d67322289435472c1271af2
+    name: backend
+    type: application
+    urls:
+    - https://kyodevcorp.github.io/ikusi-bk-chart/backend-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-09-08T13:04:33.194268712Z"
